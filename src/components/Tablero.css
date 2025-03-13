@@ -1,0 +1,18 @@
+/* .tablero {
+    display: grid;
+    gap: 5px;
+  } */
+  
+  .filas {
+    /* width: 50px;
+    height: 50px; */
+    background-color: lightgray;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black; */
+  }
+
+.filas:hover{
+    background-color: red;
+}
