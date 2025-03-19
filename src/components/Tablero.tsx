@@ -9,7 +9,7 @@ function Tablero() {
     
 
     // Creamos una matriz 6x6 inicializada con casillas vacías
-    const [grid, setGrid] = useState(
+    const [grid, setGrid] = useState<{ emoji: string; tipo: string; nivel: number }[][]>(
         Array.from({ length: filas }, () =>
             Array.from({ length: columnas }, () => ({
                 emoji: "",  
@@ -23,15 +23,21 @@ function Tablero() {
     // Iniciales (Siempre permanetes)
     grid[0][0] = {emoji: "☁️", tipo: "agua", nivel: 10};
     grid[5][5] = {emoji: "🌋", tipo: "fuego", nivel: 10};
+
+    type Elemento = {
+        emoji: string;
+        tipo: string;
+        nivel: number;
+      };
     
     // Objetos generables
-    const elementos = {
+    const elementos: Record<string, Elemento> = {
         agua: { emoji: "💧", tipo: "agua", nivel: 1 },
         fuego: { emoji: "🔥", tipo: "fuego", nivel: 1 }
     };
 
     // Subida de nivel
-    const elementosMejora = {
+    const elementosMejora: Record<string, Elemento> = {
         agua2: { emoji: "🥤", tipo: "agua", nivel: 2},
         fuego2: { emoji: "🍳", tipo: "fuego", nivel: 2},
         agua3: { emoji: "🚰", tipo: "agua", nivel: 3},
@@ -48,7 +54,7 @@ function Tablero() {
     // ################## GENERAR
 
     // Función para buscar todas las casillas vacías
-    const buscarCasillasVacias = () => {
+    const buscarCasillasVacias = (): { fila: number; columna: number }[] => {
         let casillasVacias: { fila: number; columna: number }[] = [];
 
         for (let fila = 0; fila < filas; fila++) {
@@ -63,7 +69,7 @@ function Tablero() {
     };
 
     // Función que selecciona una casilla vacía aleatoria y genera un nuevo elemento
-    const generarElemento = (tipo: string) => {
+    const generarElemento = (tipo: string): void => {
         const casillasVacias = buscarCasillasVacias();
 
         if (casillasVacias.length === 0) {
@@ -105,8 +111,8 @@ function Tablero() {
     };
 
     // Permitir soltar sobre una casilla
-    const arrastrarDragOver = (e: React.DragEvent) => {
-        e.preventDefault(); 
+    const arrastrarDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
+        e.preventDefault();
     };
 
     // Función que se ejecuta cuando se suelta una casilla en otra

@@ -9,7 +9,7 @@ type CasillaParametros = {
   onClick?: () => void;  // Función opcional que se ejecutará al hacer clic en la casilla
   onDragStart?: (fila: number, columna: number) => void;
   onDrop?: (fila: number, columna: number) => void;
-  onDragOver?: (e: React.DragEvent) => void;
+  onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
 };
 
 // Definimos el componente funcional Casilla
