@@ -31,6 +31,14 @@ function Tablero() {
     };
 
     // Subida de nivel
+    const elementosMejora = {
+        agua2: { emoji: "💧", tipo: "agua", nivel: 2},
+        fuego2: { emoji: "🔥", tipo: "fuego", nivel: 2},
+        agua3: { emoji: "💧", tipo: "agua", nivel: 3},
+        fuego3: { emoji: "🔥", tipo: "fuego", nivel: 3},
+        agua4: { emoji: "💧", tipo: "agua", nivel: 4},
+        fuego4: { emoji: "🔥", tipo: "fuego", nivel: 4},
+    };
 
     // Estado para rastrear la casilla que se está arrastrando
     const [draggedCell, setDraggedCell] = useState<{ fila: number; columna: number, nivel: number, tipo: string} | null>(null);
