@@ -26,7 +26,7 @@ const Casilla: React.FC<CasillaParametros> = ({ index, emoji, nivel, fila, colum
     onDrop={() => onDrop?.(fila, columna)}
     onDragOver={(e) => onDragOver?.(e)}
     >
-      {emoji} {/* Mostramos el emoji dentro de la casilla */}
+      {emoji}
     </div>
   );
 };

@@ -32,12 +32,12 @@ function Tablero() {
 
     // Subida de nivel
     const elementosMejora = {
-        agua2: { emoji: "💧", tipo: "agua", nivel: 2},
-        fuego2: { emoji: "🔥", tipo: "fuego", nivel: 2},
-        agua3: { emoji: "💧", tipo: "agua", nivel: 3},
-        fuego3: { emoji: "🔥", tipo: "fuego", nivel: 3},
-        agua4: { emoji: "💧", tipo: "agua", nivel: 4},
-        fuego4: { emoji: "🔥", tipo: "fuego", nivel: 4},
+        agua2: { emoji: "🥤", tipo: "agua", nivel: 2},
+        fuego2: { emoji: "🍳", tipo: "fuego", nivel: 2},
+        agua3: { emoji: "🚰", tipo: "agua", nivel: 3},
+        fuego3: { emoji: "🥓", tipo: "fuego", nivel: 3},
+        agua4: { emoji: "🚚", tipo: "agua", nivel: 4},
+        fuego4: { emoji: "🍔", tipo: "fuego", nivel: 4},
     };
 
     // Estado para rastrear la casilla que se está arrastrando
@@ -117,18 +117,27 @@ function Tablero() {
         if (fila === draggedCell.fila && columna === draggedCell.columna) return;
 
         // Solo permite soltar si el nivel y tipo coinciden
-        if (draggedCell.nivel !== nivel || draggedCell.tipo !== tipo) {
-            return;
-        }
+        if (draggedCell.nivel !== nivel || draggedCell.tipo !== tipo) return;
 
-        // Clonamos el tablero y movemos el contenido
-        const nuevoGrid = [...grid];
-        nuevoGrid[fila][columna] = { ...grid[draggedCell.fila][draggedCell.columna] };
-        nuevoGrid[draggedCell.fila][draggedCell.columna] = { emoji: "", tipo: "null", nivel: 0 }; 
+        // Determinar el siguiente nivel usando elementosMejora
+        const mejora = `${tipo}${nivel + 1}` as keyof typeof elementosMejora;
+        
+        if (elementosMejora[mejora]){
+            // Clonar el tablero
+            const nuevoGrid = [...grid];
 
-        // Actualizamos el estado
-        setGrid(nuevoGrid);
-        setDraggedCell(null); 
+            // Actualizamos la casilla con la mejora
+            nuevoGrid[fila][columna] = elementosMejora[mejora];
+
+            // Vaciar casilla de origen
+            nuevoGrid[draggedCell.fila][draggedCell.columna] = { emoji: "", tipo: "null", nivel: 0 };
+            
+            // Actualizamos el estado
+            setGrid(nuevoGrid);
+            setDraggedCell(null); 
+        }         
+
+        
     };
 
     // ################## VISTA ##################
