@@ -1,19 +1,23 @@
 .tablero {
-    display: grid;
-    grid-template-columns: repeat(6, 50px);
-    gap: 5px;
-  }
-  
-  .celdas {
-    width: 50px;
-    height: 50px;
-    background-color: lightgray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid black;
-  }
+  display: grid;
+  gap: 5px;
+}
 
-.celdas:hover{
-    background-color: red;
+.fila{
+  display: flex;
+  gap: 5px;
+}
+
+.casilla {
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.casilla:hover{
+  background-color: rgb(110, 110, 110);
 }
